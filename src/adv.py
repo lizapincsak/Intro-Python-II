@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+new_player = Player("Fatima", room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +50,45 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+direction = ""
+while direction != "q":
+    print("Your current location: ", new_player.current_room.name)
+    print(new_player.current_room.description)
+    print(f"""
+    
+    """)
+
+    past = new_player.current_room
+
+    direction = input("Where would you like to go? (n/s/e/w) OR q for quit: ")
+
+    if direction == "n":
+        if new_player.current_room.n_to == None:
+            print("There is no room to the north")
+        else:
+            new_player.current_room = new_player.current_room.n_to
+    elif direction == "s":
+        if new_player.current_room.s_to == None:
+            print("There is no room to the south")
+        else: new_player.current_room = new_player.current_room.s_to
+    elif direction == "e":
+        if new_player.current_room.e_to == None:
+            print("There is no room to the east")
+        else: new_player.current_room = new_player.current_room.e_to
+    elif direction == "w":
+        if new_player.current_room.w_to == None:
+            print("There is no room to the west")
+        else: new_player.current_room = new_player.current_room.w_to
+    elif direction == "q":
+        print("Thank you for playing!")
+    
+    if: new_player.current_room == None:
+        print("This room doesn't exist")
+    
+    
+    
+    
+    
+    
+    
